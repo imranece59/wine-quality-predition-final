@@ -67,8 +67,10 @@ RUN echo "${PATH}"
 #    --master=local[*] --run-type=prediction \
 #    --model-store-path=s3a://cs-643-850-assignment-2/output/model \
 #    --testing-file-path=s3a://cs-643-850-assignment-2/input/validation/ValidationDataset.csv
+RUN wget "https://github.com/imranece59/wine-quality-predition-final/blob/master/image/wine-quality-prediction_2.11-1.0.jar"
+RUN echo "$(ls -ltr)"
 CMD ./spark-submit --class demo.common.WineQualityModelTrain \
-    s3a://cs-643-850-assignment-2/JAR/wine-quality-prediction_2.11-1.0.jar \
+    wine-quality-prediction_2.11-1.0.jar \
     --master=local[*] --run-type=prediction \
-    --model-store-path=s3a://cs-643-850-assignment-2/output/model \
+    --model-store-path=file/// \
     --testing-file-path=file:///input/TestDataset.csv
